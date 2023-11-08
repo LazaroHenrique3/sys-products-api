@@ -23,5 +23,28 @@ export default {
         } catch (error) {
             return response.json({message: error.message})
         }
+    },
+
+    async listPost(request: Request, response: Response) {
+        try {
+            const { id } = request.params
+        
+            const post = await prisma.post.findUnique({ where: { id: Number(id)} })
+
+            if(!post){
+                return response.json({
+                    error: true,
+                    message: 'Error: Post not found!',
+                })
+            }
+
+            return response.json({
+                error: false,
+                post
+            })
+
+        } catch (error) {
+            return response.json({message: error.message})
+        }
     }
 }

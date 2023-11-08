@@ -9,6 +9,8 @@ app.use(Express.json())
 const PORT = process.env.PORT ? process.env.PORT : 8000
 
 app.post('/createUser', UserController.createUser)
+
+app.get('/listPost/:id', PostController.listPost)
 app.post('/createPost', PostController.createPost)
 
 app.listen(PORT, () => {
