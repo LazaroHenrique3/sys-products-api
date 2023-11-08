@@ -12,6 +12,7 @@ app.post('/createUser', UserController.createUser)
 
 app.get('/listPost/:id', PostController.listPost)
 app.post('/createPost', PostController.createPost)
+app.put('/updatePost', PostController.updatePost)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)

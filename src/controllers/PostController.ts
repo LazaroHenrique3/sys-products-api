@@ -46,5 +46,39 @@ export default {
         } catch (error) {
             return response.json({message: error.message})
         }
+    },
+
+    async updatePost(request: Request, response: Response) {
+        try {
+            const { id, title, content } = request.body
+        
+            const postExists = await prisma.post.findUnique({ where: { id: Number(id)} })
+
+            if(!postExists){
+                return response.json({
+                    error: true,
+                    message: 'Error: Post not found!',
+                })
+            }
+
+            const post = await prisma.post.update({
+                where: {
+                    id: Number(request.body.id)
+                },
+                data: {
+                    title,
+                    content
+                }
+            })
+
+            return response.json({
+                error: false,
+                message: 'Success: Post has been updated!',
+                post
+            })
+
+        } catch (error) {
+            return response.json({message: error.message})
+        }
     }
 }
