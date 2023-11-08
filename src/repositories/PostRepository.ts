@@ -1,0 +1,5 @@
+class PostRepository {
+
+}
+
+export { PostRepository }
